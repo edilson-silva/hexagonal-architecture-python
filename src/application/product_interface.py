@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from application.status_enum import StatusEnum
+from src.application.status_enum import StatusEnum
 
 
 class ProductInterface(metaclass=ABCMeta):
