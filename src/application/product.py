@@ -3,11 +3,16 @@ from src.application.status_enum import StatusEnum
 
 
 class Product(ProductInterface):
+    def __init__(self, id: int, name: str, price: float = 0) -> None:
+        self.__id = id
+        self.__name = name
+        self.__price = price
+
     def is_valid(self) -> bool:
         return False
 
     def enable(self) -> None:
-        if self.price > 0:
+        if self.__price > 0:
             self.status = StatusEnum.ENABLED
 
         raise ValueError("The price must be greater than zero to enable the product")
@@ -16,13 +21,13 @@ class Product(ProductInterface):
         pass
 
     def get_id(self) -> str:
-        return self.id
+        return self.__id
 
     def get_name(self) -> str:
-        return self.name
+        return self.__name
 
     def get_status(self) -> str:
-        return self.status.value
+        return self.__status
 
     def get_price(self) -> float:
-        return self.price
+        return self.__price
