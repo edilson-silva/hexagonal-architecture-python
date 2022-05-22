@@ -1,5 +1,5 @@
-from application.product_interface import ProductInterface
-from application.status_enum import StatusEnum
+from src.application.product_interface import ProductInterface
+from src.application.status_enum import StatusEnum
 
 
 class Product(ProductInterface):
