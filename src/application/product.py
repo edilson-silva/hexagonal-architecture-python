@@ -7,15 +7,18 @@ class Product(ProductInterface):
         self.__id = id
         self.__name = name
         self.__price = price
+        self.__status = StatusEnum.DISABLED
 
     def is_valid(self) -> bool:
         return False
 
     def enable(self) -> None:
-        if self.__price > 0:
-            self.status = StatusEnum.ENABLED
+        if self.__price < 0:
+            raise ValueError(
+                "The price must be greater than zero to enable the product"
+            )
 
-        raise ValueError("The price must be greater than zero to enable the product")
+        self.__status = StatusEnum.ENABLED
 
     def disable(self) -> None:
         pass
