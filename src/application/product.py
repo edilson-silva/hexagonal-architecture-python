@@ -13,7 +13,7 @@ class Product(ProductInterface):
         return False
 
     def enable(self) -> None:
-        if self.__price < 0:
+        if self.__price <= 0:
             raise ValueError(
                 "The price must be greater than zero to enable the product"
             )
