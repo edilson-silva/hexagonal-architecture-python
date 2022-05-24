@@ -75,7 +75,7 @@ class ProductTest(TestCase):
     ):
         with pytest.raises(
             ValueError,
-            match=f"The price must be greater or equal zero",
+            match="The price must be greater or equal zero",
         ):
             product = Product(
                 id=3,
@@ -87,7 +87,7 @@ class ProductTest(TestCase):
 
         with pytest.raises(
             ValueError,
-            match=f"The price must be greater or equal zero",
+            match="The price must be greater or equal zero",
         ):
             product = Product(
                 id=3, name="OTG Adapter", status=StatusEnum.DISABLED, price=-1
@@ -99,14 +99,14 @@ class ProductTest(TestCase):
     ):
         with pytest.raises(
             ValueError,
-            match=f"The ID must be integer and geater or equal zero",
+            match="The ID must be integer and geater or equal zero",
         ):
             product = Product(id="1", name="OTG Adapter", status=StatusEnum.DISABLED)
             product.is_valid()
 
         with pytest.raises(
             ValueError,
-            match=f"The ID must be integer and geater or equal zero",
+            match="The ID must be integer and geater or equal zero",
         ):
             product = Product(id=-1, name="OTG Adapter", status=StatusEnum.DISABLED)
             product.is_valid()
