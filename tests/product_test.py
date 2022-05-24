@@ -68,3 +68,27 @@ class ProductTest(TestCase):
         ):
             product = Product(id=3, name="OTG Adapter", status="xpto")
             product.is_valid()
+
+    def test_product_with_invalid_price_should_raise_a_value_error_exception(
+        self,
+    ):
+        with pytest.raises(
+            ValueError,
+            match=f"The price must be greater or equal zero",
+        ):
+            product = Product(
+                id=3,
+                name="OTG Adapter",
+                status=StatusEnum.DISABLED,
+                price="price as string",
+            )
+            product.is_valid()
+
+        with pytest.raises(
+            ValueError,
+            match=f"The price must be greater or equal zero",
+        ):
+            product = Product(
+                id=3, name="OTG Adapter", status=StatusEnum.DISABLED, price=1.0
+            )
+            product.is_valid()
