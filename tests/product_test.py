@@ -1,3 +1,4 @@
+from operator import is_
 from unittest import TestCase
 
 import pytest
@@ -126,3 +127,11 @@ class ProductTest(TestCase):
         ):
             product = Product(id=3, name="", status=StatusEnum.DISABLED)
             product.is_valid()
+
+    def test_product_should_be_validated(
+        self,
+    ):
+        product = Product(id=3, name="OTG Cable", status=StatusEnum.DISABLED, price=10)
+        is_valid = product.is_valid()
+
+        assert is_valid
