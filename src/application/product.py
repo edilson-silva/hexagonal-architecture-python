@@ -17,7 +17,11 @@ class Product(ProductInterface):
                 f"The status must be one of the following: {', '.join(StatusEnum.get_members_values())}"
             )
 
-        if not isinstance(self.__price, float) and self.__price < 0:
+        if (
+            not isinstance(self.__price, float)
+            or not isinstance(self.__price, int)
+            or self.__price < 0
+        ):
             raise ValueError("The price must be greater or equal zero")
 
         if not isinstance(self.__id, int) and self.__id < 0:
