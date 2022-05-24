@@ -21,7 +21,10 @@ class Product(ProductInterface):
         self.__status = StatusEnum.ENABLED
 
     def disable(self) -> None:
-        pass
+        if self.__price != 0:
+            raise ValueError("The price must be zero to disable the product")
+
+        self.__status = StatusEnum.DISABLED
 
     def get_id(self) -> str:
         return self.__id
