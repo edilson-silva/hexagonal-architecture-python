@@ -27,3 +27,7 @@ class ProductTest(TestCase):
         ):
             product = Product(id=1, name="Acer VX5")
             product.enable()
+
+    def test_product_should_be_desabled_with_price_equal_to_zero(self):
+        product = Product(id=2, name="USB C Cable", price=0)
+        product.disable()
