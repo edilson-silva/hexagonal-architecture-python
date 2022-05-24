@@ -14,7 +14,7 @@ class Product(ProductInterface):
     def is_valid(self) -> bool:
         if not self.__status:
             raise ValueError(
-                f"The status must be one of the following: {', '.joint(StatusEnum.get_members_values())}"
+                f"The status must be one of the following: {', '.join(StatusEnum.get_members_values())}"
             )
 
         if not isinstance(self.__price, float) and self.__price < 0:
