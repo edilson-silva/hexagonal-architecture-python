@@ -22,7 +22,7 @@ class Product(ProductInterface):
         ) or self.__price < 0:
             raise ValueError("The price must be greater or equal zero")
 
-        if not isinstance(self.__id, int) and self.__id < 0:
+        if not isinstance(self.__id, int) or self.__id < 0:
             raise ValueError("The ID must be integer and geater or equal zero")
 
         if not isinstance(self.__name, str) and not self.__name:
