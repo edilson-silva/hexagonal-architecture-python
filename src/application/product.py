@@ -18,10 +18,8 @@ class Product(ProductInterface):
             )
 
         if (
-            not isinstance(self.__price, float)
-            or not isinstance(self.__price, int)
-            or self.__price < 0
-        ):
+            not isinstance(self.__price, float) and not isinstance(self.__price, int)
+        ) or self.__price < 0:
             raise ValueError("The price must be greater or equal zero")
 
         if not isinstance(self.__id, int) and self.__id < 0:

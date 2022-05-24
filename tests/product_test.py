@@ -89,6 +89,6 @@ class ProductTest(TestCase):
             match=f"The price must be greater or equal zero",
         ):
             product = Product(
-                id=3, name="OTG Adapter", status=StatusEnum.DISABLED, price=1.0
+                id=3, name="OTG Adapter", status=StatusEnum.DISABLED, price=-1
             )
             product.is_valid()
