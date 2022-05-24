@@ -3,13 +3,19 @@ from src.application.status_enum import StatusEnum
 
 
 class Product(ProductInterface):
-    def __init__(self, id: int, name: str, price: float = 0) -> None:
+    def __init__(
+        self, id: int, name: str, price: float = 0, status: str = StatusEnum.INVALID
+    ) -> None:
         self.__id = id
         self.__name = name
         self.__price = price
-        self.__status = StatusEnum.DISABLED
+        self.__status = StatusEnum(status)
 
     def is_valid(self) -> bool:
+        if not self.__status:
+            raise ValueError(
+                f"The status must be one of the following: {', '.joint(StatusEnum.get_members_values())}"
+            )
         return False
 
     def enable(self) -> None:
