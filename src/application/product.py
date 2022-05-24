@@ -16,7 +16,17 @@ class Product(ProductInterface):
             raise ValueError(
                 f"The status must be one of the following: {', '.joint(StatusEnum.get_members_values())}"
             )
-        return False
+
+        if not isinstance(self.__price, float) and self.__price < 0:
+            raise ValueError("The price must be greater or equal zero")
+
+        if not isinstance(self.__id, int) and self.__id < 0:
+            raise ValueError("The ID must be integer and geater or equal zero")
+
+        if not isinstance(self.__name, str) and not self.__name:
+            raise ValueError("The Name must be string and is required")
+
+        return True
 
     def enable(self) -> None:
         if self.__price <= 0:
