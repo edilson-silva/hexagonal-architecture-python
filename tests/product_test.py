@@ -58,3 +58,13 @@ class ProductTest(TestCase):
         ):
             product = Product(id=3, name="OTG Adapter", status="xpto")
             product.is_valid()
+
+    def test_product_with_invalid_status_should_raise_a_value_error_exception(
+        self,
+    ):
+        with pytest.raises(
+            ValueError,
+            match=f"The status must be one of the following: {', '.join(StatusEnum.get_members_values())}",
+        ):
+            product = Product(id=3, name="OTG Adapter", status="xpto")
+            product.is_valid()
