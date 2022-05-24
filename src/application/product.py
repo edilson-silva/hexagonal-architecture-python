@@ -25,7 +25,9 @@ class Product(ProductInterface):
         if not isinstance(self.__id, int) or self.__id < 0:
             raise ValueError("The ID must be integer and geater or equal zero")
 
-        if not isinstance(self.__name, str) and not self.__name:
+        if not isinstance(self.__name, str) or (
+            isinstance(self.__name, str) and not self.__name
+        ):
             raise ValueError("The Name must be string and is required")
 
         return True

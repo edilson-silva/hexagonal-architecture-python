@@ -109,3 +109,20 @@ class ProductTest(TestCase):
         ):
             product = Product(id=-1, name="OTG Adapter", status=StatusEnum.DISABLED)
             product.is_valid()
+
+    def test_product_with_invalid_name_should_raise_a_value_error_exception(
+        self,
+    ):
+        with pytest.raises(
+            ValueError,
+            match="The Name must be string and is required",
+        ):
+            product = Product(id=3, name=[], status=StatusEnum.DISABLED)
+            product.is_valid()
+
+        with pytest.raises(
+            ValueError,
+            match="The Name must be string and is required",
+        ):
+            product = Product(id=3, name="", status=StatusEnum.DISABLED)
+            product.is_valid()
