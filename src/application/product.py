@@ -1,10 +1,11 @@
 from src.application.product_interface import ProductInterface
 from src.application.status_enum import StatusEnum
+from uuid import UUID
 
 
 class Product(ProductInterface):
     def __init__(
-        self, id: int, name: str, price: float = 0, status: str = StatusEnum.INVALID
+        self, id: UUID, name: str, price: float = 0, status: str = StatusEnum.INVALID
     ) -> None:
         self.__id = id
         self.__name = name
@@ -22,8 +23,9 @@ class Product(ProductInterface):
         ) or self.__price < 0:
             raise ValueError("The price must be greater or equal zero")
 
-        if not isinstance(self.__id, int) or self.__id < 0:
-            raise ValueError("The ID must be integer and geater or equal zero")
+        if not isinstance(self.__id, UUID):
+
+            raise ValueError("The ID must be a UUID")
 
         if not isinstance(self.__name, str) or (
             isinstance(self.__name, str) and not self.__name
@@ -46,7 +48,7 @@ class Product(ProductInterface):
 
         self.__status = StatusEnum.DISABLED
 
-    def get_id(self) -> str:
+    def get_id(self) -> UUID:
         return self.__id
 
     def get_name(self) -> str:
