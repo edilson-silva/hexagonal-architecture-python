@@ -48,7 +48,7 @@ class Product(ProductInterface):
 
         self.__status = StatusEnum.DISABLED
 
-    def get_id(self) -> str:
+    def get_id(self) -> UUID:
         return self.__id
 
     def get_name(self) -> str:
