@@ -8,7 +8,7 @@ from src.application.status_enum import StatusEnum
 
 
 class ProductTest(TestCase):
-    def test_product_should_be_enabled_with_price_greater_than_zero():
+    def test_product_should_be_enabled_with_price_greater_than_zero(self):
         product = Product(id=1, name="Acer VX5", price=10)
         product.enable()
 
@@ -29,7 +29,7 @@ class ProductTest(TestCase):
             product = Product(id=1, name="Acer VX5")
             product.enable()
 
-    def test_product_should_be_desabled_with_price_equal_to_zero():
+    def test_product_should_be_desabled_with_price_equal_to_zero(self):
         product = Product(id=2, name="USB C Cable", price=0)
         product.disable()
 
