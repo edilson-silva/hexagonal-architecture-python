@@ -23,7 +23,6 @@ class Product(ProductInterface):
         ) or self.__price < 0:
             raise ValueError("The price must be greater or equal zero")
 
-        print("id:", isinstance(self.__id, UUID))
         if not isinstance(self.__id, UUID):
             raise ValueError("The ID must be an UUID")
 
