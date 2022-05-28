@@ -1,4 +1,3 @@
-from math import prod
 from unittest.mock import Mock
 
 import pytest
