@@ -52,3 +52,18 @@ class ProductService:
             return self.persistence.save(product=product)
         except ValueError:
             return None
+
+    def disable(self, product: ProductInterface) -> Optional[ProductInterface]:
+        """Disable a product
+
+        Args:
+            product (ProductInterface): Product to disable
+
+        Returns:
+            Optional[ProductInterface]: Disabled product or None
+        """
+        try:
+            product.disable()
+            return self.persistence.save(product=product)
+        except ValueError:
+            return None
