@@ -48,3 +48,18 @@ def test_product_service_enable_should_return_a_product():
     result = service.enable(product=product)
 
     assert product == result
+
+
+def test_product_service_disable_should_return_a_product():
+    # Define product mock
+    product = Mock(spec=ProductInterface, name="product")
+    product.disable.return_value = None
+
+    # Defining product persistence service interface mock and setting mocked get method return value
+    persistence = Mock(spec=ProductPersistenceServiceInterface, name="persistence")
+    persistence.save.return_value = product
+
+    service = ProductService(persistence=persistence)
+    result = service.disable(product=product)
+
+    assert product == result
