@@ -1,5 +1,7 @@
 from math import prod
 from unittest.mock import Mock
+
+import pytest
 from src.application.product_interface import ProductInterface
 from src.services.product_persistence_service_interface import (
     ProductPersistenceServiceInterface,
@@ -7,18 +9,25 @@ from src.services.product_persistence_service_interface import (
 from src.services.product_service import ProductService
 
 
-def test_product_service_get_should_return_a_product():
+@pytest.fixture
+def product_mock():
     # Define product mock
-    product = Mock(spec=ProductInterface, name="product")
+    return Mock(spec=ProductInterface, name="product")
 
+
+@pytest.fixture
+def persistence_mock():
     # Defining product persistence service interface mock and setting mocked get method return value
-    persistence = Mock(spec=ProductPersistenceServiceInterface, name="persistence")
-    persistence.get.return_value = product
+    return Mock(spec=ProductPersistenceServiceInterface, name="persistence")
 
-    service = ProductService(persistence=persistence)
+
+def test_product_service_get_should_return_a_product(product_mock, persistence_mock):
+    persistence_mock.get.return_value = product_mock
+
+    service = ProductService(persistence_mock)
     result = service.get(id="abc")
 
-    assert product == result
+    assert product_mock == result
 
 
 def test_product_service_create_should_return_a_product():
