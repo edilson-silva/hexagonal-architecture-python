@@ -10,10 +10,12 @@ class Product(ProductInterface):
         self.__id = uuid4()
         self.__name = name
         self.__price = price
-        self.__status = StatusEnum(status)
+        self.__status = (
+            StatusEnum(status) if str(status).strip() else StatusEnum.DISABLED
+        )
 
     def is_valid(self) -> bool:
-        if not self.__status:
+        if self.__status == StatusEnum.INVALID:
             raise ValueError(
                 f"The status must be one of the following: {', '.join(StatusEnum.get_members_values())}"
             )
