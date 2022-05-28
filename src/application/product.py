@@ -1,13 +1,13 @@
 from src.application.product_interface import ProductInterface
 from src.application.status_enum import StatusEnum
-from uuid import UUID
+from uuid import UUID, uuid4
 
 
 class Product(ProductInterface):
     def __init__(
-        self, id: UUID, name: str, price: float = 0, status: str = StatusEnum.INVALID
+        self, name: str, price: float = 0, status: str = StatusEnum.DISABLED
     ) -> None:
-        self.__id = id
+        self.__id = uuid4()
         self.__name = name
         self.__price = price
         self.__status = StatusEnum(status)
